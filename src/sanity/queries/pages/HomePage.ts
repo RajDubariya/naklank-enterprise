@@ -12,8 +12,13 @@ export const HomePageQuery = defineQuery(`*[_type == "home"][0]{
     },
     "footer": footer->{
     ${Footer}
-},
-   
+    },
+    sections[]{
+    (_type == "hero_section") => {
+        ...
+    },
+    }
+
   } 
 `);
 

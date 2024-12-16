@@ -12,10 +12,10 @@ export const HomePage = defineType({
       title: "Main",
       default: true,
     },
-    {
-      name: "seo",
-      title: "SEO",
-    },
+    // {
+    //   name: "seo",
+    //   title: "SEO",
+    // },
   ],
   fields: [
     defineField({
@@ -46,7 +46,7 @@ export const HomePage = defineType({
       name: "slug",
       title: "Slug",
       type: "slug",
-      description: "The URL slug for the page (e.g., /home, /about).",
+      description: "The URL slug for the page (e.g., /, /about).",
       options: {
         source: "name",
         maxLength: 96,
@@ -54,19 +54,14 @@ export const HomePage = defineType({
       validation: (Rule) => Rule.required(),
       group: "main",
     }),
-    // defineField({
-    //   name: "sections",
-    //   title: "Sections",
-    //   type: "array",
-    //   description: "Section that make up the page.",
-    //   of: [
-    //     { type: "blogs_section" },
-    //     { type: "search_section" },
-    //     { type: "recent_blogs_section" },
-    //     { type: "editors_blogs_section" },
-    //   ],
-    //   group: "main",
-    // }),
+    defineField({
+      name: "sections",
+      title: "Sections",
+      type: "array",
+      description: "Section that make up the page.",
+      of: [{ type: "hero_section" }],
+      group: "main",
+    }),
     // defineField({
     //   name: "seo",
     //   title: "SEO",
