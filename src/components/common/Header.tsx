@@ -12,7 +12,7 @@ const Header = (props: Props) => {
   const { header } = props;
 
   return (
-    <div>
+    <div className="bg-brand flex">
       <Image
         src={urlFor(header?.logo?.image)}
         alt={header?.logo?.alt}
