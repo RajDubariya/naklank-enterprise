@@ -17,7 +17,6 @@ export const SingleLink = defineType({
       name: "link",
       title: "Link",
       type: "string",
-      description: "Main link URL",
     }),
   ],
   preview: {

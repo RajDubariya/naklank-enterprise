@@ -17,24 +17,13 @@ export const HomePageQuery = defineQuery(`*[_type == "home"][0]{
     (_type == "hero_section") => {
         ...
     },
+    (_type == "home_about_section") => {
+        ...
+    },  
+    (_type == "home_products_section") => {
+        ...
+    },  
     }
 
   } 
 `);
-
-// sections[]{
-//     (_type == "search_section") => {
-//         ${SearchSectionString}
-//     },
-//     (_type == "recent_blogs_section") => {
-//       ...
-//     },
-//     (_type == "editors_blogs_section") => {
-//         ${BlogSectionString}
-//     },
-//     (_type == "blogs_section") => {
-//        ${BlogSectionString}
-//     },
-// },seo{
-//     ${SeoString}
-// }

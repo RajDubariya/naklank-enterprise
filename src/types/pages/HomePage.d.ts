@@ -9,11 +9,41 @@ export type HomePageType = {
   logo: CustomImageType;
   header: HeaderType;
   footer: FooterType;
-  sections: HomeHeroSection[];
+  sections: (HomeHeroSection | HomeAboutSection | HomeProductsSection)[];
 };
 export type HomeHeroSection = {
   _key: string;
   images: HeroImage[];
+};
+export type HomeAboutSection = {
+  _key: string;
+  title: string;
+  description: string;
+  business_details: BusinessDetails[];
+};
+export type HomeProductsSection = {
+  _key: string;
+  title: string;
+  description?: string;
+  cta: {
+    link: string;
+    label: string;
+  };
+  products: Product[];
+};
+
+export type Product = {
+  _key: string;
+  title: string;
+  description: string;
+  product_image: CustomImageType;
+};
+
+type BusinessDetails = {
+  _key: string;
+  point_title: string;
+  point_value: string;
+  icon: CustomImageType;
 };
 
 type HeroImage = {

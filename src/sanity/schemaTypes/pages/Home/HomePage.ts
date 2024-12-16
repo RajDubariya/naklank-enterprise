@@ -59,7 +59,11 @@ export const HomePage = defineType({
       title: "Sections",
       type: "array",
       description: "Section that make up the page.",
-      of: [{ type: "hero_section" }],
+      of: [
+        { type: "hero_section" },
+        { type: "home_about_section" },
+        { type: "home_products_section" },
+      ],
       group: "main",
     }),
     // defineField({
