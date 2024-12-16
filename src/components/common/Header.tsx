@@ -12,8 +12,7 @@ const Header = (props: Props) => {
   const { header } = props;
 
   return (
-    <div className="bg-brand flex items-center justify-between p-2 pr-6 pl-5">
-
+    <header className="bg-brand flex items-center justify-between p-4 px-5">
       <div className="flex items-center space-x-4">
         <Image
           src={urlFor(header?.logo?.image)}
@@ -22,13 +21,12 @@ const Header = (props: Props) => {
           height={90}
         />
       </div>
-
       <div className="flex space-x-6 relative">
         {header?.headerLinks?.map((item, index) => (
           <div key={index} className="relative group">
             <Link
               href={item?.link || "#"}
-              className="text-white text-lg font-medium relative group-hover:text-brand-light"
+              className="text-white text-lg relative group-hover:text-brand-light"
             >
               <span className="transition-transform duration-300 group-hover:scale-110">
                 {item?.label}
@@ -39,16 +37,16 @@ const Header = (props: Props) => {
             {item?.dropdownLinks && item?.dropdownLinks.length > 0 && (
               <div className="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-opacity duration-500 z-50">
                 <ul className="py-2">
-                  {item?.dropdownLinks.map((dropdownItem, dropdownIndex) => (
+                  {item?.dropdownLinks?.map((dropdownItem) => (
                     <li
-                      key={dropdownIndex}
-                      className="hover:bg-[#3e4095] transition-colors duration-300"
+                      key={item?._key}
+                      className="hover:bg-brand transition-colors duration-300"
                     >
                       <Link
-                        href={dropdownItem.link}
+                        href={dropdownItem?.link}
                         className="block px-4 py-2 text-sm text-gray-800 hover:text-white rounded-s-3xl"
                       >
-                        {dropdownItem.label}
+                        {dropdownItem?.label}
                       </Link>
                     </li>
                   ))}
@@ -58,7 +56,7 @@ const Header = (props: Props) => {
           </div>
         ))}
       </div>
-    </div>
+    </header>
   );
 };
 
