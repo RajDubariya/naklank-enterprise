@@ -34,14 +34,14 @@ export const HomePage = defineType({
       validation: (Rule) => Rule.required(),
       group: "main",
     }),
-    // defineField({
-    //   name: "footer",
-    //   title: "Footer",
-    //   type: "reference",
-    //   to: [{ type: "footer" }],
-    //   validation: (Rule) => Rule.required(),
-    //   group: "main",
-    // }),
+    defineField({
+      name: "footer",
+      title: "Footer",
+      type: "reference",
+      to: [{ type: "footer" }],
+      validation: (Rule) => Rule.required(),
+      group: "main",
+    }),
     defineField({
       name: "slug",
       title: "Slug",

@@ -1,5 +1,6 @@
 import { defineQuery } from "next-sanity";
 import { Header } from "../common/Header";
+import { Footer } from "../common/Footer";
 
 export const HomePageQuery = defineQuery(`*[_type == "home"][0]{
     _id,
@@ -9,13 +10,13 @@ export const HomePageQuery = defineQuery(`*[_type == "home"][0]{
     "header": header->{
         ${Header}
     },
+    "footer": footer->{
+    ${Footer}
+},
    
   } 
 `);
 
-// "footer": footer->{
-//     ${Footer}
-// },
 // sections[]{
 //     (_type == "search_section") => {
 //         ${SearchSectionString}

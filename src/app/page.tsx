@@ -7,7 +7,7 @@ export default async function Home() {
 
   return (
     <>
-      <Layout header={data?.header}></Layout>
+      <Layout header={data?.header} footer={data?.footer}></Layout>
     </>
   );
 }
