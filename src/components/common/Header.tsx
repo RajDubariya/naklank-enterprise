@@ -13,16 +13,10 @@ interface Props {
 
 const Header = (props: Props) => {
   const { header } = props;
-  const [isOpen, setIsOpen] = useState(false); // Mobile menu toggle
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const [openDropdownIndex, setOpenDropdownIndex] = useState<number | null>(
     null
   );
-
-  const handleDropdownClick = (index: number) => {
-    setOpenDropdownIndex((prevIndex) => (prevIndex === index ? null : index));
-  };
-
-  
 
   return (
     <div className="bg-brand text-white relative z-50">
@@ -55,7 +49,6 @@ const Header = (props: Props) => {
               <Link
                 href={item?.link || "#"}
                 className="relative block hover:text-brand-light cursor-pointer"
-                onClick={() => handleDropdownClick(index)} // Toggle dropdown on click
               >
                 {item?.label}
                 {/* Underline Animation */}
@@ -65,33 +58,36 @@ const Header = (props: Props) => {
                   }`}
                 ></span>
               </Link>
-
-              {/* Dropdown for Desktop */}
-              {item?.dropdownLinks && item?.dropdownLinks.length > 0 && (
-                <div
-                  className={`absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md z-50 transition-all duration-300 ${
-                    openDropdownIndex === index
-                      ? "opacity-100 pointer-events-auto"
-                      : "opacity-0 pointer-events-none"
-                  }`}
-                >
-                  <ul className="py-0.5">
-                    {item?.dropdownLinks.map((dropdownItem, dropdownIndex) => (
-                      <li
-                        key={dropdownItem?._key || dropdownIndex}
-                        className="hover:bg-[#3e4095] transition-colors duration-300"
-                      >
-                        <Link
-                          href={dropdownItem?.link}
-                          className="block px-4 py-2 text-sm text-gray-800 hover:text-white"
-                        >
-                          {dropdownItem?.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
+              <div>
+                {/* Dropdown for Desktop */}
+                {item?.dropdownLinks && item?.dropdownLinks?.length > 0 && (
+                  <div
+                    className={`absolute left-0 w-48 bg-white shadow-lg rounded-md z-50 transition-all duration-300 ${
+                      openDropdownIndex === index
+                        ? "opacity-100 pointer-events-auto"
+                        : "opacity-0 pointer-events-none"
+                    }`}
+                  >
+                    <ul className="py-0.5">
+                      {item?.dropdownLinks?.map(
+                        (dropdownItem, dropdownIndex) => (
+                          <li
+                            key={dropdownItem?._key || dropdownIndex}
+                            className="hover:bg-brand transition-colors duration-300"
+                          >
+                            <Link
+                              href={dropdownItem?.link}
+                              className="block px-4 py-2 text-sm text-gray-800 hover:text-white"
+                            >
+                              {dropdownItem?.label}
+                            </Link>
+                          </li>
+                        )
+                      )}
+                    </ul>
+                  </div>
+                )}
+              </div>
             </div>
           ))}
         </div>
@@ -115,7 +111,7 @@ const Header = (props: Props) => {
             <div key={index} className="relative">
               <Link
                 href={item?.link || "#"}
-                className="block py-2 text-lg hover:text-brand-light"
+                className="block text-lg hover:text-brand-light"
                 onClick={() => setIsOpen(false)}
               >
                 {item?.label}
@@ -128,7 +124,7 @@ const Header = (props: Props) => {
                     <Link
                       key={dropdownItem?._key || dropdownIndex}
                       href={dropdownItem?.link || "#"}
-                      className="block py-1 text-sm text-gray-300 hover:text-brand-light"
+                      className="block py-0.5 text-sm text-gray-300 hover:text-brand-light"
                       onClick={() => setIsOpen(false)}
                     >
                       {dropdownItem?.label}
