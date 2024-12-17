@@ -1,8 +1,11 @@
+"use client";
+
 import { urlFor } from "@/sanity/lib/image";
 import { HeaderType } from "@/types/common/Header";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
+import { Sling as Hamburger } from "hamburger-react";
 
 interface Props {
   header: HeaderType;
@@ -10,56 +13,132 @@ interface Props {
 
 const Header = (props: Props) => {
   const { header } = props;
+  const [isOpen, setIsOpen] = useState(false); // Mobile menu toggle
+  const [openDropdownIndex, setOpenDropdownIndex] = useState<number | null>(
+    null
+  );
+
+  const handleDropdownClick = (index: number) => {
+    setOpenDropdownIndex((prevIndex) => (prevIndex === index ? null : index));
+  };
+
+  
 
   return (
-    <div className="bg-brand flex items-center justify-between p-2 pr-6 pl-5">
-      <div className="flex items-center space-x-4">
-        <Image
-          src={urlFor(header?.logo?.image)}
-          alt={header?.logo?.alt}
-          width={90}
-          height={90}
-        />
+    <div className="bg-brand text-white relative z-50">
+      {/* Navbar Container */}
+      <div className="flex items-center justify-between p-4">
+        {/* Logo */}
+        <div className="flex items-center">
+          <Image
+            src={urlFor(header?.logo?.image)}
+            alt={header?.logo?.alt || "Logo"}
+            width={90}
+            height={90}
+          />
+        </div>
+
+        {/* Hamburger Menu (for mobile) */}
+        <div className="md:hidden">
+          <Hamburger toggled={isOpen} toggle={setIsOpen} color="#ffffff" />
+        </div>
+
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex space-x-6">
+          {header?.headerLinks?.map((item, index) => (
+            <div
+              key={index}
+              className="relative"
+              onMouseEnter={() => setOpenDropdownIndex(index)} // Open dropdown on hover
+              onMouseLeave={() => setOpenDropdownIndex(null)} // Close dropdown on hover out
+            >
+              <Link
+                href={item?.link || "#"}
+                className="relative block hover:text-brand-light cursor-pointer"
+                onClick={() => handleDropdownClick(index)} // Toggle dropdown on click
+              >
+                {item?.label}
+                {/* Underline Animation */}
+                <span
+                  className={`absolute bottom-0 left-0 h-[2px] bg-brand-light transition-all duration-300 ${
+                    openDropdownIndex === index ? "w-full" : "w-0"
+                  }`}
+                ></span>
+              </Link>
+
+              {/* Dropdown for Desktop */}
+              {item?.dropdownLinks && item?.dropdownLinks.length > 0 && (
+                <div
+                  className={`absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md z-50 transition-all duration-300 ${
+                    openDropdownIndex === index
+                      ? "opacity-100 pointer-events-auto"
+                      : "opacity-0 pointer-events-none"
+                  }`}
+                >
+                  <ul className="py-0.5">
+                    {item?.dropdownLinks.map((dropdownItem, dropdownIndex) => (
+                      <li
+                        key={dropdownItem?._key || dropdownIndex}
+                        className="hover:bg-[#3e4095] transition-colors duration-300"
+                      >
+                        <Link
+                          href={dropdownItem?.link}
+                          className="block px-4 py-2 text-sm text-gray-800 hover:text-white"
+                        >
+                          {dropdownItem?.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
 
-      <div className="flex space-x-6 relative">
-        {header?.headerLinks?.map((item, index) => (
-          <div key={index} className="relative">
-            <Link
-              href={item?.link || "#"}
-              className="text-white text-lg relative"
-            >
-              <span
-                className="group inline-block relative hover:text-brand-light cursor-pointer"
-              >
-                {/* Label text hover trigger */}
-                {item?.label}
-                <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-brand-light group-hover:w-full transition-all duration-300"></span>
+      {/* Mobile Navigation */}
+      <div
+        className={`${
+          isOpen ? "translate-x-0" : "-translate-x-full"
+        } md:hidden fixed top-0 left-0 w-full h-screen bg-brand text-white shadow-lg transition-transform duration-300 ease-in-out z-50`}
+      >
+        <div className="flex flex-col p-6 space-y-4">
+          <button
+            onClick={() => setIsOpen(false)}
+            className="text-white text-2xl self-end"
+          >
+            &#x2715;
+          </button>
 
-                {/* Dropdown Section */}
-                {item?.dropdownLinks && item?.dropdownLinks.length > 0 && (
-                  <div className="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-opacity duration-300 z-50">
-                    <ul className="py-0.5">
-                      {item?.dropdownLinks?.map((dropdownItem, dropdownIndex) => (
-                        <li
-                          key={dropdownItem?._key || dropdownIndex}
-                          className="hover:bg-[#3e4095] transition-colors duration-300"
-                        >
-                          <Link
-                            href={dropdownItem?.link}
-                            className="block px-4 py-2 text-sm text-gray-800 hover:text-white"
-                          >
-                            {dropdownItem?.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </span>
-            </Link>
-          </div>
-        ))}
+          {header?.headerLinks?.map((item, index) => (
+            <div key={index} className="relative">
+              <Link
+                href={item?.link || "#"}
+                className="block py-2 text-lg hover:text-brand-light"
+                onClick={() => setIsOpen(false)}
+              >
+                {item?.label}
+              </Link>
+
+              {/* Dropdown for Mobile */}
+              {item?.dropdownLinks && item?.dropdownLinks.length > 0 && (
+                <div className="ml-4 mt-1">
+                  {item?.dropdownLinks.map((dropdownItem, dropdownIndex) => (
+                    <Link
+                      key={dropdownItem?._key || dropdownIndex}
+                      href={dropdownItem?.link || "#"}
+                      className="block py-1 text-sm text-gray-300 hover:text-brand-light"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {dropdownItem?.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
