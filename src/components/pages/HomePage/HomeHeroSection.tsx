@@ -13,7 +13,7 @@ import "swiper/css/pagination";
 
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 
-const HomeHeroSection = ({ data = { images: [] } }: { data: HomeHeroSectionType }) => {
+const HomeHeroSection = ({ data }: { data: HomeHeroSectionType }) => {
   const swiperRef = useRef<any>(null);
 
   const handleMouseEnter = () => {
@@ -25,7 +25,7 @@ const HomeHeroSection = ({ data = { images: [] } }: { data: HomeHeroSectionType 
   };
 
   return (
-    <div className="relative w-full mx-auto p-2 md:p-4 bg-gray-100">
+    <div className="relative w-full mx-auto p-2 md:p-4">
       <Swiper
         ref={swiperRef}
         spaceBetween={20}
@@ -44,8 +44,8 @@ const HomeHeroSection = ({ data = { images: [] } }: { data: HomeHeroSectionType 
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
-              <Link href={heroImage?.title?.link || "#"} passHref>
-                <div className="relative w-full h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] cursor-pointer">
+              <Link href={heroImage?.title?.link || "#"}>
+                <div className="relative w-full h-[400px] sm:h-[500px] md:h-[600px] lg:h-[630px] cursor-pointer">
                   <Image
                     src={
                       heroImage?.image?.image
@@ -55,7 +55,7 @@ const HomeHeroSection = ({ data = { images: [] } }: { data: HomeHeroSectionType 
                     alt={heroImage?.image?.alt || "Hero Image"}
                     layout="fill"
                     objectFit="cover"
-                    className="transform transition-transform duration-500 group-hover:scale-110 group-hover:blur-[2px]"
+                    className="transform transition-transform duration-500 group-hover:scale-110 group-hover:blur-[0.8px]"
                   />
                 </div>
               </Link>
@@ -68,7 +68,7 @@ const HomeHeroSection = ({ data = { images: [] } }: { data: HomeHeroSectionType 
                 </h3>
                 <Link
                   href={heroImage?.title?.link || "#"}
-                  className="inline-block mt-4 px-6 py-3 mb-7 sm:px-8 sm:py-4 bg-brand-light text-black font-semibold rounded-full shadow-md hover:bg-white hover:text-brand-dark transition-all duration-300 transform hover:scale-105"
+                  className="inline-block mt-4 px-6 py-3 mb-7 sm:px-8 sm:py-4 bg-brand-light text-white font-semibold rounded-full shadow-md hover:bg-white hover:text-black transition-all duration-300 transform hover:scale-105"
                 >
                   Learn More
                 </Link>
