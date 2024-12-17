@@ -18,56 +18,57 @@ import { Autoplay, Navigation, Pagination } from "swiper/modules";
 const HomeHeroSection = ({ data }: { data: HomeHeroSectionType }) => {
   const swiperRef = useRef<any>(null);
 
- 
+
   const handleMouseEnter = () => {
     swiperRef.current?.swiper.autoplay.stop();
   };
 
- 
+
   const handleMouseLeave = () => {
     swiperRef.current?.swiper.autoplay.start();
   };
 
   return (
     <div className="relative w-full mx-auto p-2 md:p-4 bg-gray-100">
-    
+
       <Swiper
         ref={swiperRef}
-        spaceBetween={20} 
-        slidesPerView={1} 
-        loop={true} 
+        spaceBetween={20}
+        slidesPerView={1}
+        loop={true}
         autoplay={{ delay: 3000, disableOnInteraction: false }}
-        navigation={true} 
-        pagination={{ clickable: true }} 
-        modules={[Autoplay, Navigation, Pagination]} 
+        navigation={true}
+        pagination={{ clickable: true }}
+        modules={[Autoplay, Navigation, Pagination]}
         className="mySwiper"
       >
         {data?.images?.map((heroImage) => (
           <SwiperSlide key={heroImage._key}>
-            
+
             <div
               className="relative overflow-hidden group rounded-lg shadow-lg"
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
-             
+
               <Link href={heroImage?.title?.link || "#"} passHref>
-               
-                <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[650px] cursor-pointer">
+
+                <div className="relative w-full h-[250px] sm:h-[300px] md:h-[350px] lg:h-[450px] cursor-pointer">
                   <Image
                     src={urlFor(heroImage?.image?.image)}
                     alt={heroImage?.image?.alt || "Hero Image"}
                     layout="fill"
-                    objectFit="cover" 
+                    objectFit="cover"
                     className="transform transition-transform duration-500 group-hover:scale-110 group-hover:blur-[2px]"
                   />
                 </div>
+
               </Link>
 
-             
+
               <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-500"></div>
 
-              
+
               <div className="absolute bottom-4 left-4 right-4 text-white text-center">
                 <h3 className="text-xs sm:text-2xl md:text-2xl font-bold drop-shadow-md">
                   {heroImage?.title?.label || "Explore"}

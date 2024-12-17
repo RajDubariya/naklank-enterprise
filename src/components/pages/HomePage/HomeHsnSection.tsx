@@ -3,9 +3,9 @@ import React from "react";
 
 const HomeHsnSection = ({ data }: { data: HomeHsnSectionType }) => {
   return (
-    <section className="my-8 mx-auto px-6">
+    <section className="my-3 mx-auto px-6">
    
-      <h2 className="text-3xl md:text-4xl font-bold text-brand-dark text-center mb-4">
+      <h2 className="text-3xl md:text-4xl font-bold text-brand-dark text-center mb-4 mt-6">
         {data.title}
       </h2>
 
