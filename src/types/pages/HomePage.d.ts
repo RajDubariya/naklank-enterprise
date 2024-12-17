@@ -2,6 +2,12 @@ import { FooterType } from "../common/Footer";
 import { HeaderType } from "../common/Header";
 import { CustomImageType } from "./CustomImage";
 
+export type HomeSectionType =
+  | HomeHeroSection
+  | HomeAboutSection
+  | HomeProductsSection
+  | HomeHsnSection;
+
 export type HomePageType = {
   _id: string;
   _type: string;
@@ -9,7 +15,7 @@ export type HomePageType = {
   logo: CustomImageType;
   header: HeaderType;
   footer: FooterType;
-  sections: (HomeHeroSection | HomeAboutSection | HomeProductsSection)[];
+  sections: HomeSectionType[];
 };
 export type HomeHeroSection = {
   _key: string;
@@ -31,11 +37,18 @@ export type HomeProductsSection = {
   };
   products: Product[];
 };
+export type HomeHsnSection = {
+  _key: string;
+  title: string;
+  description?: string;
+  hsn_details: { hsn_code: string; hsn_description: string }[];
+};
 
 export type Product = {
   _key: string;
   title: string;
   description: string;
+  slug: string;
   product_image: CustomImageType;
 };
 

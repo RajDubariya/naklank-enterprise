@@ -9,6 +9,7 @@ import { HomePage } from "./pages/Home/HomePage";
 import { HomeAboutSection } from "./pages/Home/sections/about_section";
 import { HeroSection } from "./pages/Home/sections/hero_section";
 import { HomeProductsSection } from "./pages/Home/sections/products_section";
+import { HomeHsnSection } from "./pages/Home/sections/hsn_section";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -21,6 +22,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     HomePage,
     HeroSection,
     HomeAboutSection,
-    HomeProductsSection
+    HomeProductsSection,
+    HomeHsnSection,
   ],
 };

@@ -27,11 +27,6 @@ export const HomeProductsSection = defineType({
           type: "object",
           fields: [
             defineField({
-              name: "product_image",
-              title: "Product Image",
-              type: "custom_image",
-            }),
-            defineField({
               name: "title",
               title: "Title",
               type: "string",
@@ -40,6 +35,16 @@ export const HomeProductsSection = defineType({
               name: "description",
               title: "Description",
               type: "text",
+            }),
+            defineField({
+              name: "slug",
+              title: "Slug",
+              type: "string",
+            }),
+            defineField({
+              name: "product_image",
+              title: "Product Image",
+              type: "custom_image",
             }),
           ],
           preview: {

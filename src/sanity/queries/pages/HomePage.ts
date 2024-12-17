@@ -23,6 +23,9 @@ export const HomePageQuery = defineQuery(`*[_type == "home"][0]{
     (_type == "home_products_section") => {
         ...
     },  
+    (_type == "home_hsn_section") => {
+        ...
+    },  
     }
 
   } 
