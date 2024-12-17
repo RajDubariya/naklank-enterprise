@@ -13,15 +13,15 @@ import "swiper/css/pagination";
 
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 
-const HomeHeroSection = ({ data }: { data: HomeHeroSectionType }) => {
+const HomeHeroSection = ({ data = { images: [] } }: { data: HomeHeroSectionType }) => {
   const swiperRef = useRef<any>(null);
 
   const handleMouseEnter = () => {
-    swiperRef.current?.swiper.autoplay.stop();
+    if (swiperRef.current?.swiper) swiperRef.current.swiper.autoplay.stop();
   };
 
   const handleMouseLeave = () => {
-    swiperRef.current?.swiper.autoplay.start();
+    if (swiperRef.current?.swiper) swiperRef.current.swiper.autoplay.start();
   };
 
   return (
@@ -38,17 +38,20 @@ const HomeHeroSection = ({ data }: { data: HomeHeroSectionType }) => {
         className="mySwiper"
       >
         {data?.images?.map((heroImage) => (
-          <SwiperSlide key={heroImage._key}>
+          <SwiperSlide key={heroImage?._key || Math.random()}>
             <div
               className="relative overflow-hidden group rounded-lg shadow-lg"
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
               <Link href={heroImage?.title?.link || "#"} passHref>
-                {/* Increased Height */}
                 <div className="relative w-full h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] cursor-pointer">
                   <Image
-                    src={urlFor(heroImage?.image?.image)}
+                    src={
+                      heroImage?.image?.image
+                        ? urlFor(heroImage?.image?.image)
+                        : "/fallback-image.jpg"
+                    }
                     alt={heroImage?.image?.alt || "Hero Image"}
                     layout="fill"
                     objectFit="cover"
@@ -57,10 +60,8 @@ const HomeHeroSection = ({ data }: { data: HomeHeroSectionType }) => {
                 </div>
               </Link>
 
-              {/* Gradient Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-500"></div>
 
-              {/* Title and CTA */}
               <div className="absolute bottom-8 left-8 right-8 text-white text-center">
                 <h3 className="text-lg sm:text-3xl md:text-4xl font-bold drop-shadow-md">
                   {heroImage?.title?.label || "Explore"}
