@@ -1,14 +1,12 @@
+//@ts-ignore
+//@ts-nocheck
+import AboutSection from "../pages/AboutUsPage/AboutSection";
+
 const Section = ({ sections }) => {
   return sections?.map((section: any) => {
     switch (section?._type) {
-      case "about_us_title":
-        return "about_us_title";
-      case "company_album":
-        return "company_album";
-      case "facts_sheet":
-        return "facts_sheet";
-      case "company_images":
-        return "company_images";
+      case "about_us":
+        return <AboutSection data={section} />;
       default:
         break;
     }

@@ -11,7 +11,7 @@ import { HeroSection } from "./pages/Home/sections/hero_section";
 import { HomeProductsSection } from "./pages/Home/sections/products_section";
 import { HomeHsnSection } from "./pages/Home/sections/hsn_section";
 import { AboutUsPage } from "./pages/AboutUs/AboutUsPage";
-import { AboutUsPageTitleSection } from "./pages/AboutUs/sections/about_us_title";
+import { AboutUsSection } from "./pages/AboutUs/sections/about_us";
 import { CompanyAlbumSection } from "./pages/AboutUs/sections/company_album";
 import { FactsSheetSection } from "./pages/AboutUs/sections/facts_sheet";
 import { CompanyImagesSection } from "./pages/AboutUs/sections/company_images";
@@ -32,7 +32,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     HomeProductsSection,
     HomeHsnSection,
     AboutUsPage,
-    AboutUsPageTitleSection,
+    AboutUsSection,
     CompanyAlbumSection,
     FactsSheetSection,
     CompanyImagesSection,

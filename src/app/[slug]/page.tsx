@@ -10,7 +10,6 @@ export default async function Page({
 }) {
   const slug = (await params)?.slug;
   const data = await fetchData(PageQuery, { slug });
-  console.log(data);
 
   return (
     <Layout header={data?.header} footer={data?.footer}>

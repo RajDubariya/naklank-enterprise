@@ -59,12 +59,7 @@ export const AboutUsPage = defineType({
       title: "Sections",
       type: "array",
       description: "Section that make up the page.",
-      of: [
-        { type: "about_us_title" },
-        { type: "company_album" },
-        { type: "facts_sheet" },
-        { type: "company_images" },
-      ],
+      of: [{ type: "about_us" }],
       group: "main",
     }),
     // defineField({
