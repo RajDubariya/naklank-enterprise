@@ -7,19 +7,29 @@ import Image from "next/image";
 
 const AboutSection = ({ data }: { data: AboutSectionType }) => {
   return (
-    <div className="py-12">
-      <motion.h1
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
-        viewport={{ once: true }}
-        className="text-3xl md:text-5xl lg:text-6xl font-bold text-center mb-12 relative"
-      >
-        <span className="inline-block pb-2 border-b-4 border-brand">
-          {data?.title}
-        </span>
-      </motion.h1>
-
+    <section className="py-6 md:py-12">
+      <div className="mb-14">
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+          viewport={{ once: true }}
+          className="text-3xl md:text-5xl lg:text-5xl font-bold text-center relative"
+        >
+          <span className="inline-block pb-2 border-b-4 border-brand">
+            {data?.title}
+          </span>
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.35, ease: "easeInOut" }}
+          viewport={{ once: true }}
+          className="text-center md:w-3/4 mx-auto mt-2 md:p-0 p-2"
+        >
+          {data?.description}
+        </motion.p>
+      </div>
       <div className="space-y-20">
         {data?.items?.map((item: Item, index: number) => (
           <motion.div
@@ -68,7 +78,7 @@ const AboutSection = ({ data }: { data: AboutSectionType }) => {
                   ease: "easeInOut",
                 }}
                 viewport={{ once: true }}
-                className="text-2xl md:text-3xl mb-3 lg:text-4xl md:mb-8 font-bold text-black uppercase"
+                className="text-2xl md:text-3xl mb-3 lg:text-4xl md:mb-6 font-bold text-black uppercase"
               >
                 {item?.maintitle || "Main Title"}
               </motion.h2>
@@ -81,7 +91,7 @@ const AboutSection = ({ data }: { data: AboutSectionType }) => {
                   ease: "easeInOut",
                 }}
                 viewport={{ once: true }}
-                className="text-xl md:text-2xl lg:text-3xl font-semibold text-gray-600"
+                className="text-xl md:text-2xl lg:text-2xl font-semibold text-gray-600"
               >
                 {item?.title || "Section Title"}
               </motion.h3>
@@ -102,7 +112,7 @@ const AboutSection = ({ data }: { data: AboutSectionType }) => {
           </motion.div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

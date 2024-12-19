@@ -31,7 +31,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     HomeAboutSection,
     HomeProductsSection,
     HomeHsnSection,
-    AboutUsPage,
     AboutUsSection,
     CompanyAlbumSection,
     FactsSheetSection,
