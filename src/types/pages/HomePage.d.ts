@@ -1,3 +1,4 @@
+import { PortableTextBlock } from "next-sanity";
 import { FooterType } from "../common/Footer";
 import { HeaderType } from "../common/Header";
 import { CustomImageType } from "./CustomImage";
@@ -25,7 +26,8 @@ export type HomeAboutSection = {
   _key: string;
   title: string;
   description: string;
-  business_details: BusinessDetails[];
+  image: CustomImageType;
+  cta: { label: string; link: string };
 };
 export type HomeProductsSection = {
   _key: string;
@@ -65,5 +67,6 @@ type HeroImage = {
     label: string;
     link: string;
   };
+  description: string;
   image: CustomImageType;
 };

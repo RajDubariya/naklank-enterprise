@@ -4,7 +4,7 @@ import { urlFor } from "@/sanity/lib/image";
 import { HeaderType } from "@/types/common/Header";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import { useState } from "react";
 import { Sling as Hamburger } from "hamburger-react";
 
 interface Props {
@@ -19,10 +19,8 @@ const Header = (props: Props) => {
   );
 
   return (
-    <div className="bg-brand text-white relative z-50">
-      {/* Navbar Container */}
+    <div className="bg-black text-white relative z-50">
       <div className="flex items-center justify-between p-4">
-        {/* Logo */}
         <div className="flex items-center">
           <Image
             src={urlFor(header?.logo?.image)}
@@ -32,26 +30,23 @@ const Header = (props: Props) => {
           />
         </div>
 
-        {/* Hamburger Menu (for mobile) */}
         <div className="md:hidden">
           <Hamburger toggled={isOpen} toggle={setIsOpen} color="#ffffff" />
         </div>
 
-        {/* Desktop Navigation */}
         <div className="hidden md:flex space-x-6">
           {header?.headerLinks?.map((item, index) => (
             <div
               key={index}
               className="relative"
-              onMouseEnter={() => setOpenDropdownIndex(index)} // Open dropdown on hover
-              onMouseLeave={() => setOpenDropdownIndex(null)} // Close dropdown on hover out
+              onMouseEnter={() => setOpenDropdownIndex(index)}
+              onMouseLeave={() => setOpenDropdownIndex(null)}
             >
               <Link
                 href={item?.link || "#"}
                 className="relative block hover:text-brand-light cursor-pointer"
               >
                 {item?.label}
-                {/* Underline Animation */}
                 <span
                   className={`absolute bottom-0 left-0 h-[2px] bg-brand-light transition-all duration-300 ${
                     openDropdownIndex === index ? "w-full" : "w-0"
@@ -59,7 +54,6 @@ const Header = (props: Props) => {
                 ></span>
               </Link>
               <div>
-                {/* Dropdown for Desktop */}
                 {item?.dropdownLinks && item?.dropdownLinks?.length > 0 && (
                   <div
                     className={`absolute left-0 w-48 bg-white shadow-lg rounded-md z-50 transition-all duration-300 ${
@@ -93,16 +87,15 @@ const Header = (props: Props) => {
         </div>
       </div>
 
-      {/* Mobile Navigation */}
       <div
         className={`${
           isOpen ? "translate-x-0" : "-translate-x-full"
-        } md:hidden fixed top-0 left-0 w-full h-screen bg-brand text-white shadow-lg transition-transform duration-300 ease-in-out z-50`}
+        } md:hidden fixed top-0 left-0 w-full h-screen bg-white text-black shadow-lg transition-transform duration-300 ease-in-out z-50`}
       >
         <div className="flex flex-col p-6 space-y-4">
           <button
             onClick={() => setIsOpen(false)}
-            className="text-white text-2xl self-end"
+            className="text-black text-2xl self-end"
           >
             &#x2715;
           </button>
@@ -111,20 +104,18 @@ const Header = (props: Props) => {
             <div key={index} className="relative">
               <Link
                 href={item?.link || "#"}
-                className="block text-lg hover:text-brand-light"
+                className="block text-lg"
                 onClick={() => setIsOpen(false)}
               >
                 {item?.label}
               </Link>
-
-              {/* Dropdown for Mobile */}
               {item?.dropdownLinks && item?.dropdownLinks.length > 0 && (
                 <div className="ml-4 mt-1">
                   {item?.dropdownLinks.map((dropdownItem, dropdownIndex) => (
                     <Link
                       key={dropdownItem?._key || dropdownIndex}
                       href={dropdownItem?.link || "#"}
-                      className="block py-0.5 text-sm text-gray-300 hover:text-brand-light"
+                      className="block py-0.5 text-sm text-gray-500 hover:text-brand-light"
                       onClick={() => setIsOpen(false)}
                     >
                       {dropdownItem?.label}

@@ -27,6 +27,5 @@ export const HomePageQuery = defineQuery(`*[_type == "home"][0]{
         ...
     },  
     }
-
   } 
 `);

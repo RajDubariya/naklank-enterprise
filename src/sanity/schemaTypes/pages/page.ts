@@ -12,10 +12,10 @@ export const Page = defineType({
       title: "Main",
       default: true,
     },
-    // {
-    //   name: "seo",
-    //   title: "SEO",
-    // },
+    {
+      name: "seo",
+      title: "SEO",
+    },
   ],
   fields: [
     defineField({
@@ -62,12 +62,12 @@ export const Page = defineType({
       of: [{ type: "about_us" }, { type: "projects" }],
       group: "main",
     }),
-    // defineField({
-    //   name: "seo",
-    //   title: "SEO",
-    //   group: "seo",
-    //   type: "seo",
-    // }),
+    defineField({
+      name: "seo",
+      title: "SEO",
+      group: "seo",
+      type: "seo",
+    }),
   ],
   preview: {
     select: {

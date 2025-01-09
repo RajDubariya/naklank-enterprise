@@ -5,69 +5,52 @@ import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useRef } from "react";
-
 import { Swiper, SwiperSlide } from "swiper/react";
-
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 
 const HomeHeroSection = ({ data }: { data: HomeHeroSectionType }) => {
-  const swiperRef = useRef<any>(null);
-
-  const handleMouseEnter = () => {
-    if (swiperRef.current?.swiper) swiperRef.current.swiper.autoplay.stop();
-  };
-
-  const handleMouseLeave = () => {
-    if (swiperRef.current?.swiper) swiperRef.current.swiper.autoplay.start();
-  };
-
   return (
-    <div className="relative w-full mx-auto p-2 md:p-4">
+    <div className="w-full h-[calc(100vh-0px)] relative">
       <Swiper
-        ref={swiperRef}
-        spaceBetween={20}
+        spaceBetween={0}
         slidesPerView={1}
         loop={true}
-        autoplay={{ delay: 3000, disableOnInteraction: false }}
-        navigation={true}
+        autoplay={{ delay: 3000, disableOnInteraction: true }}
         pagination={{ clickable: true }}
-        modules={[Autoplay, Navigation, Pagination]}
-        className="mySwiper"
+        modules={[Autoplay, Pagination]}
+        className="w-full h-full"
       >
         {data?.images?.map((heroImage) => (
           <SwiperSlide key={heroImage?._key || Math.random()}>
-            <div
-              className="relative overflow-hidden group rounded-lg shadow-lg"
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
-              <Link href={heroImage?.title?.link || "#"}>
-                <div className="relative w-full h-[400px] sm:h-[500px] md:h-[600px] lg:h-[630px] cursor-pointer">
-                  <Image
-                    src={
-                      heroImage?.image?.image
-                        ? urlFor(heroImage?.image?.image)
-                        : "/fallback-image.jpg"
-                    }
-                    alt={heroImage?.image?.alt || "Hero Image"}
-                    layout="fill"
-                    objectFit="cover"
-                    className="transform transition-transform duration-500 group-hover:scale-110 group-hover:blur-[0.8px]"
-                  />
-                </div>
-              </Link>
-
-              <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-500"></div>
-
-              <div className="absolute bottom-8 left-8 right-8 text-white text-center">
-                <h3 className="text-lg sm:text-3xl md:text-4xl font-bold drop-shadow-md">
-                  {heroImage?.title?.label || "Explore"}
-                </h3>
+            <div className="relative w-full h-full">
+              <div className="absolute inset-0 bg-black/50 pointer-events-none z-10" />
+              <Image
+                src={
+                  heroImage?.image?.image
+                    ? urlFor(heroImage?.image?.image)
+                    : "/fallback-image.jpg"
+                }
+                alt={heroImage?.image?.alt || "Hero Image"}
+                fill
+                priority
+                className="object-cover"
+              />
+              <div className="absolute top-[20%] md:top-[40%] left-8 text-white max-w-2xl z-20">
+                <h1 className="text-5xl mb-4 capitalize drop-shadow-lg">
+                  {heroImage?.title?.label}
+                </h1>
+                {/* <p className="text-lg mb-8">{heroImage?.description}</p> */}
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Pariatur a voluptatibus id totam veritatis, deleniti
+                  dignissimos ea reprehenderit porro officia, distinctio fugit
+                  doloribus voluptas modi ab impedit quo in neque!
+                </p>
                 <Link
                   href={heroImage?.title?.link || "#"}
-                  className="inline-block mt-4 px-6 py-3 mb-7 sm:px-8 sm:py-4 bg-brand-light text-white font-semibold rounded-full shadow-md hover:bg-white hover:text-black transition-all duration-300 transform hover:scale-105"
+                  className="inline-block px-8 py-3 bg-white hover:bg-gray-100 text-black transition-colors uppercase text-sm tracking-wider mt-8"
                 >
-                  Learn More
+                  Find out more
                 </Link>
               </div>
             </div>
