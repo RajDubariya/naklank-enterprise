@@ -4,7 +4,7 @@ import { urlFor } from "@/sanity/lib/image";
 import { HeaderType } from "@/types/common/Header";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Sling as Hamburger } from "hamburger-react";
 
 interface Props {
@@ -17,10 +17,25 @@ const Header = (props: Props) => {
   const [openDropdownIndex, setOpenDropdownIndex] = useState<number | null>(
     null
   );
+  const [hasScrolled, setHasScrolled] = useState<boolean>(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      setHasScrolled(scrollPosition > 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <div className="bg-black text-white relative z-50">
-      <div className="flex items-center justify-between p-4">
+    <div
+      className={`fixed w-full z-50 transition-colors duration-500 ${
+        hasScrolled ? "bg-black" : "bg-transparent"
+      } text-white`}
+    >
+      <div className="flex items-center gap-10 p-4">
         <div className="flex items-center">
           <Image
             src={urlFor(header?.logo?.image)}
@@ -56,18 +71,18 @@ const Header = (props: Props) => {
               <div>
                 {item?.dropdownLinks && item?.dropdownLinks?.length > 0 && (
                   <div
-                    className={`absolute left-0 w-48 bg-white shadow-lg rounded-md z-50 transition-all duration-300 ${
+                    className={`absolute left-0  w-48 bg-white shadow-lg rounded-md z-50 transition-all duration-300 ${
                       openDropdownIndex === index
                         ? "opacity-100 pointer-events-auto"
                         : "opacity-0 pointer-events-none"
                     }`}
                   >
-                    <ul className="py-0.5">
+                    <ul className="">
                       {item?.dropdownLinks?.map(
                         (dropdownItem, dropdownIndex) => (
                           <li
                             key={dropdownItem?._key || dropdownIndex}
-                            className="hover:bg-brand transition-colors duration-300"
+                            className="hover:bg-black transition-colors duration-500"
                           >
                             <Link
                               href={dropdownItem?.link}

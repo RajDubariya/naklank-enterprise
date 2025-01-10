@@ -6,10 +6,10 @@ import Link from "next/link";
 
 const HomeAboutSection = ({ data }: { data: HomeAboutSectionType }) => {
   return (
-    <section className="min-h-screen w-full flex items-center justify-center p-3 md:p-6">
+    <section className="h-screen w-full flex items-center justify-center p-3 md:p-6">
       <div className="grid grid-cols-1 lg:grid-cols-2 items-center justify-center gap-8">
-        <div className="px-0  lg:pl-10">
-          <h2 className="text-2xl md:text-4xl font-bold mb-4">{data?.title}</h2>
+        <div className="px-0 lg:pl-10">
+          <h2 className="text-3xl md:text-5xl font-bold mb-4">{data?.title}</h2>
           <h3 className="text-sm md:text-base lg:text-lg text-gray-600 mb-5">
             {data?.description}
           </h3>
