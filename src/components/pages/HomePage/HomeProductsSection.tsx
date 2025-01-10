@@ -23,8 +23,8 @@ const ProductsTabs = ({ data }: { data: HomeProductsSection }) => {
       className={`px-4 md:px-6 py-2 text-sm md:text-base font-medium transition-colors uppercase
       ${
         activeTab === index
-          ? "text-black border-t-[3px] border-black"
-          : "text-gray-500 hover:text-gray-700"
+          ? "text-white border-t-[3px] border-white"
+          : "text-gray-300 hover:text-gray-400"
       }`}
     >
       {tab?.tab_name}
@@ -46,14 +46,14 @@ const ProductsTabs = ({ data }: { data: HomeProductsSection }) => {
       </div>
 
       <div className="space-y-2 md:space-y-6">
-        <h3 className="text-2xl md:text-5xl font-bold capitalize">
+        <h3 className="text-2xl md:text-5xl font-bold capitalize text-white">
           {tab?.content?.heading}
         </h3>
 
-        <p className="text-gray-600 text-sm md:text-lg leading-relaxed">
+        <p className="text-gray-300 text-sm md:text-lg leading-relaxed ">
           {tab?.content?.description}
         </p>
-        <button className="bg-black text-white py-2 px-4 md:py-3 md:px-6 uppercase">
+        <button className="bg-white text-black py-2 px-4 md:py-3 md:px-6 uppercase">
           <Link href={tab?.content?.cta?.link}>{tab?.content?.cta?.label}</Link>
         </button>
       </div>
@@ -61,12 +61,14 @@ const ProductsTabs = ({ data }: { data: HomeProductsSection }) => {
   );
 
   return (
-    <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-16">
-      <div className="flex justify-start md:justify-center gap-4 md:gap-8 mb-6 md:mb-12 overflow-x-auto scrollbar-hide">
-        {data?.tabs?.map((tab, index) => renderTabButton(tab, index))}
-      </div>
+    <section className="w-full  px-4 sm:px-6 py-12 md:py-16 bg-black">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex justify-start md:justify-center gap-4 md:gap-8 mb-6 md:mb-12 overflow-x-auto scrollbar-hide">
+          {data?.tabs?.map((tab, index) => renderTabButton(tab, index))}
+        </div>
 
-      {data?.tabs?.[activeTab] && renderTabContent(data?.tabs?.[activeTab])}
+        {data?.tabs?.[activeTab] && renderTabContent(data?.tabs?.[activeTab])}
+      </div>
     </section>
   );
 };
