@@ -13,7 +13,7 @@ const HomeAboutSection = ({ data }: { data: HomeAboutSectionType }) => {
           <h3 className="text-sm md:text-base lg:text-lg text-gray-600 mb-5">
             {data?.description}
           </h3>
-          <button className="bg-black text-white py-2 px-4 md:py-3 md:px-6">
+          <button className="bg-black text-white py-2 px-4 md:py-3 md:px-6 uppercase">
             <Link href={data?.cta?.link}>{data?.cta?.label}</Link>
           </button>
         </div>

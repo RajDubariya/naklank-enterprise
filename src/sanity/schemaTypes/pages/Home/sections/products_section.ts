@@ -9,63 +9,64 @@ export const HomeProductsSection = defineType({
       name: "title",
       title: "Title",
       type: "string",
-      description: "Section Title (Ex. About Us)",
+      description: "Section Title",
     }),
     defineField({
-      name: "description",
-      title: "Description",
-      type: "text",
-      description: "Section Description",
-    }),
-    defineField({
-      name: "products",
-      title: "Products",
+      name: "tabs",
+      title: "Product Tabs",
       type: "array",
-      description: "List of key business points (title and value)",
       of: [
         {
           type: "object",
           fields: [
             defineField({
-              name: "title",
-              title: "Title",
+              name: "tab_name",
+              title: "Tab Name",
               type: "string",
+              description: "Name of the tab",
             }),
             defineField({
-              name: "description",
-              title: "Description",
-              type: "text",
-            }),
-            defineField({
-              name: "slug",
-              title: "Slug",
-              type: "string",
-            }),
-            defineField({
-              name: "product_image",
-              title: "Product Image",
-              type: "custom_image",
+              name: "content",
+              title: "Tab Content",
+              type: "object",
+              fields: [
+                defineField({
+                  name: "heading",
+                  title: "Heading",
+                  type: "string",
+                }),
+                defineField({
+                  name: "description",
+                  title: "Description",
+                  type: "text",
+                }),
+                defineField({
+                  name: "product_image",
+                  title: "Product Image",
+                  type: "custom_image",
+                }),
+                defineField({
+                  name: "cta",
+                  title: "CTA Button",
+                  type: "link",
+                }),
+              ],
             }),
           ],
           preview: {
             select: {
-              title: "title",
-              media: "product_image.image",
+              title: "tab_name",
+              media: "content.product_image.image",
             },
             prepare({ title, media }) {
               return {
-                title: title || "No Title",
+                title: title || "No Tab Name",
                 media,
               };
             },
           },
         },
       ],
-    }),
-    defineField({
-      name: "cta",
-      title: "CTA button",
-      type: "singlelink",
     }),
   ],
   preview: {

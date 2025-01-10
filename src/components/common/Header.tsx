@@ -32,7 +32,7 @@ const Header = (props: Props) => {
   return (
     <div
       className={`fixed w-full z-50 transition-colors duration-500 ${
-        hasScrolled ? "bg-black" : "bg-transparent"
+        hasScrolled ? "bg-black/70" : "bg-transparent"
       } text-white`}
     >
       <div className="flex items-center gap-10 p-4">
