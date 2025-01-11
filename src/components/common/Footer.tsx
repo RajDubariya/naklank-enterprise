@@ -10,7 +10,7 @@ interface Props {
 
 const Footer = ({ footer }: Props) => {
   return (
-    <footer className="bg-brand text-white p-8 md:p-12 md:pb-5">
+    <footer className="bg-black text-white p-8 md:p-12 md:pb-5">
       <div className="container mx-auto flex flex-col md:flex-row justify-between gap-10">
         <div className="flex flex-col items-center md:items-start space-y-4">
           <Link href="/">

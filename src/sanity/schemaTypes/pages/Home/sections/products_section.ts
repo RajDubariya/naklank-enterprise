@@ -48,7 +48,7 @@ export const HomeProductsSection = defineType({
                 defineField({
                   name: "cta",
                   title: "CTA Button",
-                  type: "link",
+                  type: "singlelink",
                 }),
               ],
             }),

@@ -63,6 +63,8 @@ export const HomePage = defineType({
         { type: "hero_section" },
         { type: "home_about_section" },
         { type: "home_products_section" },
+        { type: "home_projects_section" },
+        { type: "our_products_section" },
       ],
       group: "main",
     }),

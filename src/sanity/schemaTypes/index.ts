@@ -14,6 +14,8 @@ import { HomeProductsSection } from "./pages/Home/sections/products_section";
 import { Page } from "./pages/page";
 import { AboutUsSection } from "./pages/sections/about_us";
 import { ProjectsSection } from "./pages/sections/projects";
+import { OurProjectsSection } from "./pages/Home/sections/our_projects";
+import { OurProductsSection } from "./pages/Home/sections/our_products";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -28,6 +30,8 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     HeroSection,
     HomeAboutSection,
     HomeProductsSection,
+    OurProjectsSection,
+    OurProductsSection,
     AboutUsSection,
     ProjectsSection,
     OpenGraph,

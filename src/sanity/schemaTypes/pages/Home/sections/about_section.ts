@@ -25,7 +25,7 @@ export const HomeAboutSection = defineType({
     defineField({
       name: "cta",
       title: "CTA Button",
-      type: "link",
+      type: "singlelink",
     }),
   ],
   preview: {

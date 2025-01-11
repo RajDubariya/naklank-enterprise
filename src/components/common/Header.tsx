@@ -35,7 +35,7 @@ const Header = (props: Props) => {
         hasScrolled ? "bg-black/70" : "bg-transparent"
       } text-white`}
     >
-      <div className="flex items-center gap-10 p-4">
+      <div className="flex items-center justify-between md:justify-normal gap-10 p-4">
         <div className="flex items-center">
           <Image
             src={urlFor(header?.logo?.image)}

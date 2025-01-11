@@ -10,7 +10,7 @@ import { Autoplay, Navigation, Pagination } from "swiper/modules";
 
 const HomeHeroSection = ({ data }: { data: HomeHeroSectionType }) => {
   return (
-    <div className="w-full h-[calc(100vh-0px)] relative" >
+    <div className="w-full h-[calc(100vh-0px)] relative">
       <Swiper
         spaceBetween={0}
         slidesPerView={1}
@@ -36,7 +36,7 @@ const HomeHeroSection = ({ data }: { data: HomeHeroSectionType }) => {
                 className="object-cover"
               />
               <div className="absolute top-[20%] md:top-[40%] left-2 md:left-8 text-white max-w-2xl z-20">
-                <h1 className="text-4xl md:text-6xl mb-4 capitalize drop-shadow-lg">
+                <h1 className="text-4xl md:text-6xl mb-4 font-semibold capitalize drop-shadow-lg">
                   {heroImage?.title?.label}
                 </h1>
                 {/* <p className="text-lg mb-8">{heroImage?.description}</p> */}

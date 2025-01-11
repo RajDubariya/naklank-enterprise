@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 
-const ProductsTabs = ({ data }: { data: HomeProductsSection }) => {
+const ProductsTabs = ({ data } : { data: HomeProductsSection }) => {
   const [activeTab, setActiveTab] = useState<number>(0);
 
   if (!data?.tabs || data?.tabs?.length === 0) {

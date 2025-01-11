@@ -56,3 +56,28 @@ type HeroImage = {
   description: string;
   image: CustomImageType;
 };
+
+export type OurProjectsSectionType = {
+  title: string;
+  description: string;
+  projects: Project[];
+};
+
+export type Project = {
+  _key: string;
+  link: CTA;
+  title: string;
+  image: CustomImageType;
+};
+export type SomeOurProductsSectionType = {
+  title: string;
+  cta: CTA;
+  products: OurProduct[];
+};
+export type OurProduct = {
+  _key: string;
+  link: CTA;
+  title: string;
+  firstimage: CustomImageType;
+  secondimage: CustomImageType;
+};
