@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Sling as Hamburger } from "hamburger-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface Props {
   header: HeaderType;
@@ -29,12 +30,22 @@ const Header = (props: Props) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const dropdownVariants = {
+    hidden: { opacity: 0, y: -5 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.4 },
+    },
+    exit: {
+      opacity: 0,
+      y: -5,
+      transition: { duration: 0.2 },
+    },
+  };
+
   return (
-    <div
-      className={`fixed w-full z-50 transition-colors duration-500 ${
-        hasScrolled ? "bg-black/70" : "bg-transparent"
-      } text-white`}
-    >
+    <div className="w-full z-50 transition-colors duration-500 bg-black text-white">
       <div className="flex items-center justify-between md:justify-normal gap-10 p-4">
         <div className="flex items-center">
           <Image
@@ -53,50 +64,44 @@ const Header = (props: Props) => {
           {header?.headerLinks?.map((item, index) => (
             <div
               key={index}
-              className="relative"
+              className="relative group"
               onMouseEnter={() => setOpenDropdownIndex(index)}
               onMouseLeave={() => setOpenDropdownIndex(null)}
             >
               <Link
                 href={item?.link || "#"}
-                className="relative block hover:text-brand-light cursor-pointer"
+                className="relative block cursor-pointer py-2"
               >
                 {item?.label}
-                <span
-                  className={`absolute bottom-0 left-0 h-[2px] bg-brand-light transition-all duration-300 ${
-                    openDropdownIndex === index ? "w-full" : "w-0"
-                  }`}
-                ></span>
               </Link>
-              <div>
-                {item?.dropdownLinks && item?.dropdownLinks?.length > 0 && (
-                  <div
-                    className={`absolute left-0  w-48 bg-white shadow-lg rounded-md z-50 transition-all duration-300 ${
-                      openDropdownIndex === index
-                        ? "opacity-100 pointer-events-auto"
-                        : "opacity-0 pointer-events-none"
-                    }`}
-                  >
-                    <ul className="">
-                      {item?.dropdownLinks?.map(
-                        (dropdownItem, dropdownIndex) => (
-                          <li
-                            key={dropdownItem?._key || dropdownIndex}
-                            className="hover:bg-black transition-colors duration-500"
-                          >
+
+              {item?.dropdownLinks && item?.dropdownLinks?.length > 0 && (
+                <AnimatePresence>
+                  {openDropdownIndex === index && (
+                    <motion.div
+                      initial="hidden"
+                      animate="visible"
+                      exit="exit"
+                      variants={dropdownVariants}
+                      className="absolute left-0 z-50 mt-1 w-56 bg-white shadow-lg overflow-hidden"
+                    >
+                      <div>
+                        {item?.dropdownLinks?.map(
+                          (dropdownItem, dropdownIndex) => (
                             <Link
+                              key={dropdownItem?._key || dropdownIndex}
                               href={dropdownItem?.link}
-                              className="block px-4 py-2 text-sm text-gray-800 hover:text-white"
+                              className="block px-4 py-2 text-sm text-gray-800 hover:bg-black hover:text-white transition-all duration-300"
                             >
                               {dropdownItem?.label}
                             </Link>
-                          </li>
-                        )
-                      )}
-                    </ul>
-                  </div>
-                )}
-              </div>
+                          )
+                        )}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              )}
             </div>
           ))}
         </div>
@@ -119,7 +124,7 @@ const Header = (props: Props) => {
             <div key={index} className="relative">
               <Link
                 href={item?.link || "#"}
-                className="block text-lg"
+                className="block text-lg hover:text-gray-600 transition-colors duration-300"
                 onClick={() => setIsOpen(false)}
               >
                 {item?.label}
@@ -130,7 +135,7 @@ const Header = (props: Props) => {
                     <Link
                       key={dropdownItem?._key || dropdownIndex}
                       href={dropdownItem?.link || "#"}
-                      className="block py-0.5 text-sm text-gray-500 hover:text-brand-light"
+                      className="block py-0.5 text-sm text-gray-500 hover:text-black transition-colors duration-300"
                       onClick={() => setIsOpen(false)}
                     >
                       {dropdownItem?.label}

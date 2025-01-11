@@ -10,20 +10,8 @@ interface Props {
 
 const Footer = ({ footer }: Props) => {
   return (
-    <footer className="bg-black text-white p-8 md:p-12 md:pb-5">
-      <div className="container mx-auto flex flex-col md:flex-row justify-between gap-10">
-        <div className="flex flex-col items-center md:items-start space-y-4">
-          <Link href="/">
-            <Image
-              src={urlFor(footer?.logo?.image)}
-              alt={footer?.logo?.alt || "Logo"}
-              width={200}
-              height={200}
-              className="rounded-lg hover:scale-105 transition-transform duration-300"
-            />
-          </Link>
-        </div>
-
+    <footer className="bg-black text-white p-8 md:p-12 md:pb-5 border-t border-gray-600">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-10">
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 md:gap-12">
           {footer?.footerlinks?.map((section) => (
             <div key={section?._key}>
@@ -63,7 +51,7 @@ const Footer = ({ footer }: Props) => {
         </div>
       </div>
 
-      <div className="border-t border-gray-400 mt-10 pt-6 text-center text-sm text-gray-400">
+      <div className="border-t border-gray-700 mt-10 pt-6 text-center text-sm text-gray-400">
         <p className="text-md font-sans text-gray-100 ">{footer?.eula}</p>
       </div>
     </footer>

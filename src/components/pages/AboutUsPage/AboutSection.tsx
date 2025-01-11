@@ -16,19 +16,10 @@ const AboutSection = ({ data }: { data: AboutSectionType }) => {
           viewport={{ once: true }}
           className="text-3xl md:text-5xl lg:text-5xl font-bold text-center relative"
         >
-          <span className="inline-block pb-2 border-b-4 border-brand">
+          <span className="inline-block pb-1 border-b-4 border-black">
             {data?.title}
           </span>
         </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.35, ease: "easeInOut" }}
-          viewport={{ once: true }}
-          className="text-center md:w-3/4 mx-auto mt-2 md:p-0 p-2"
-        >
-          {data?.description}
-        </motion.p>
       </div>
       <div className="space-y-20">
         {data?.items?.map((item: Item, index: number) => (
@@ -91,9 +82,9 @@ const AboutSection = ({ data }: { data: AboutSectionType }) => {
                   ease: "easeInOut",
                 }}
                 viewport={{ once: true }}
-                className="text-xl md:text-2xl lg:text-2xl font-semibold text-gray-600"
+                className="text-xl md:w-[80%] md:text-2xl lg:text-2xl font-semibold text-gray-600"
               >
-                {item?.title || "Section Title"}
+                {item?.title}
               </motion.h3>
 
               <motion.p

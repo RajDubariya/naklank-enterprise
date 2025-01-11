@@ -27,22 +27,6 @@ export const Page = defineType({
       group: "main",
     }),
     defineField({
-      name: "header",
-      title: "Header",
-      type: "reference",
-      to: [{ type: "header" }],
-      validation: (Rule) => Rule.required(),
-      group: "main",
-    }),
-    defineField({
-      name: "footer",
-      title: "Footer",
-      type: "reference",
-      to: [{ type: "footer" }],
-      validation: (Rule) => Rule.required(),
-      group: "main",
-    }),
-    defineField({
       name: "slug",
       title: "Slug",
       type: "slug",

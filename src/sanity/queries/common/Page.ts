@@ -1,6 +1,6 @@
 import { defineQuery } from "next-sanity";
-import { Header } from "../common/Header";
-import { Footer } from "../common/Footer";
+import { Header, HeaderQuery } from "../common/Header";
+import { Footer, FooterQuery } from "../common/Footer";
 
 export const PageQuery =
   defineQuery(`*[_type == "page" && slug.current == $slug][0]{
@@ -8,12 +8,8 @@ export const PageQuery =
     _type,
     name,
     "slug": slug.current,
-    "header": header->{
-        ${Header}
-    },
-    "footer": footer->{
-    ${Footer}
-    },
+    "header":${HeaderQuery},
+    "footer":${FooterQuery},
     sections
   } 
 `);

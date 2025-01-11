@@ -11,12 +11,12 @@ export const Footer = `
     name,
     links[] {
       ${LinkQuery}
-        }
-    },
+    }
+  },
     contactDetails
 `;
 
-export const FooterQuery = defineQuery(`*[_type == "header"]{
+export const FooterQuery = defineQuery(`*[_type == "footer"][0]{
     ${Footer}
   }
 `);

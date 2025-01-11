@@ -1,12 +1,12 @@
 "use client";
 
-import { HomeHeroSection as HomeHeroSectionType } from "@/types/pages/HomePage";
 import { urlFor } from "@/sanity/lib/image";
+import { HomeHeroSection as HomeHeroSectionType } from "@/types/pages/HomePage";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useRef } from "react";
+import { Autoplay, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { motion } from "framer-motion";
 
 const HomeHeroSection = ({ data }: { data: HomeHeroSectionType }) => {
   return (
@@ -23,7 +23,12 @@ const HomeHeroSection = ({ data }: { data: HomeHeroSectionType }) => {
         {data?.images?.map((heroImage) => (
           <SwiperSlide key={heroImage?._key || Math.random()}>
             <div className="relative w-full h-full">
-              <div className="absolute inset-0 bg-black/50 pointer-events-none z-10" />
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 0.4 }}
+                transition={{ duration: 0.4 }}
+                className="absolute inset-0 bg-black pointer-events-none z-10"
+              />
               <Image
                 src={
                   heroImage?.image?.image
@@ -36,22 +41,39 @@ const HomeHeroSection = ({ data }: { data: HomeHeroSectionType }) => {
                 className="object-cover"
               />
               <div className="absolute top-[20%] md:top-[40%] left-2 md:left-8 text-white max-w-2xl z-20">
-                <h1 className="text-4xl md:text-6xl mb-4 font-semibold capitalize drop-shadow-lg">
-                  {heroImage?.title?.label}
-                </h1>
-                {/* <p className="text-lg mb-8">{heroImage?.description}</p> */}
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Pariatur a voluptatibus id totam veritatis, deleniti
-                  dignissimos ea reprehenderit porro officia, distinctio fugit
-                  doloribus voluptas modi ab impedit quo in neque!
-                </p>
-                <Link
-                  href={heroImage?.title?.link || "#"}
-                  className="inline-block px-8 py-3 bg-white hover:bg-gray-100 text-black transition-colors uppercase text-sm tracking-wider mt-8"
+                <motion.h1
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.2 }}
+                  className="text-5xl md:text-6xl mb-4 font-semibold capitalize drop-shadow-lg"
                 >
-                  Find out more
-                </Link>
+                  {heroImage?.title?.label}
+                </motion.h1>
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.3 }}
+                  className="text-lg"
+                >
+                  {heroImage?.description}
+                </motion.p>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.4 }}
+                >
+                  <Link
+                    href={heroImage?.title?.link || "#"}
+                    className="inline-block px-8 py-3 bg-white hover:bg-gray-100 text-black transition-colors uppercase text-sm tracking-wider mt-8"
+                  >
+                    <motion.span
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      Find out more
+                    </motion.span>
+                  </Link>
+                </motion.div>
               </div>
             </div>
           </SwiperSlide>

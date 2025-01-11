@@ -14,7 +14,7 @@ export const Header = `
     }
 `;
 
-export const HeaderQuery = defineQuery(`*[_type == "header"]{
+export const HeaderQuery = defineQuery(`*[_type == "header"][0]{
     ${Header}
   }
 `);
