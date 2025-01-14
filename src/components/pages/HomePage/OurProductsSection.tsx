@@ -128,9 +128,18 @@ const OurProductsSection = ({ data }: { data: SomeOurProductsSectionType }) => {
                   sizes="(max-width: 1200px) 50vw, 33vw"
                 />
                 <div className="absolute inset-0 bg-black/40 flex items-end p-6">
-                  <h3 className="text-white text-3xl font-semibold">
+                  <motion.h3
+                    initial={{ y: 30, opacity: 0 }}
+                    animate={
+                      hoveredIndex === index
+                        ? { y: 0, opacity: 1 }
+                        : { y: 30, opacity: 0.5 }
+                    }
+                    transition={{ duration: 0.4, ease: "easeOut" }}
+                    className="text-white text-4xl font-semibold"
+                  >
                     {product?.title}
-                  </h3>
+                  </motion.h3>
                 </div>
               </div>
             </Link>

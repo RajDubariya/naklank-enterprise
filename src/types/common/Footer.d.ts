@@ -1,10 +1,8 @@
+import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { CustomImageType } from "./CustomImage";
 
 export type FooterType = {
   _type: string;
-  slogan: string;
-  eula: string;
-  logo: CustomImageType;
   footerlinks: {
     _key: string;
     name: string;
@@ -14,5 +12,18 @@ export type FooterType = {
       link: string;
     }[];
   }[];
-  contactDetails: string[];
+  contactDetails: Contact[];
+  socialMedia: Social[];
+};
+
+export type Contact = {
+  _key: string;
+  icon: SanityImageSource;
+  label: string;
+  link?: string;
+};
+export type Social = {
+  _key: string;
+  icon: SanityImageSource;
+  url: string;
 };

@@ -2,18 +2,24 @@ import { defineQuery } from "next-sanity";
 import { LinkQuery } from "./Link";
 
 export const Footer = `
-    _id,
-    logo,
-    slogan,
-    eula,
-   footerlinks[] {
-   _key,
+  _id,
+  footerlinks[] {
     name,
     links[] {
       ${LinkQuery}
     }
   },
-    contactDetails
+  contactDetails[]{
+    _key,
+    icon,
+    label,
+    link
+  },
+  socialMedia[]{
+    _key,
+    url,
+    icon
+  }
 `;
 
 export const FooterQuery = defineQuery(`*[_type == "footer"][0]{

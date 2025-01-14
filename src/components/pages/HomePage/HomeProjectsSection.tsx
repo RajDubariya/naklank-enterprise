@@ -38,7 +38,7 @@ const HomeProjectsSection = ({ data }: { data: OurProjectsSectionType }) => {
                 <Link
                   key={item?._key}
                   href={item?.link?.link}
-                  className="group relative overflow-hidden  aspect-[4/3]"
+                  className="group relative overflow-hidden aspect-[4/3]"
                 >
                   <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
@@ -54,7 +54,7 @@ const HomeProjectsSection = ({ data }: { data: OurProjectsSectionType }) => {
                       className="object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-30 transition-opacity" />
-                    <h3 className="absolute bottom-0 left-0 text-xl font-medium text-white p-4 capitalize">
+                    <h3 className="absolute bottom-0 left-0 text-lg font-medium text-white p-4 capitalize">
                       {item?.title}
                     </h3>
                   </motion.div>
@@ -85,7 +85,7 @@ const HomeProjectsSection = ({ data }: { data: OurProjectsSectionType }) => {
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-30 transition-all duration-500" />
-                    <h3 className="absolute bottom-0 left-0 text-xl md:text-2xl font-medium text-white p-6 capitalize">
+                    <h3 className="absolute bottom-0 left-0 md:text-lg font-medium text-white p-6 capitalize">
                       {item?.title}
                     </h3>
                   </motion.div>

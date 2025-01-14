@@ -1,5 +1,5 @@
 import { type SchemaTypeDefinition } from "sanity";
-import { Footer } from "./common/Footer";
+import { ContactItem, Footer, SocialMediaLink } from "./common/Footer";
 import { Header } from "./common/Header";
 import { AllLinks } from "./common/objects/AllLinks";
 import { CustomImage } from "./common/objects/CustomImage";
@@ -36,5 +36,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     ProjectsSection,
     OpenGraph,
     SEO,
+    ContactItem,
+    SocialMediaLink
   ],
 };
