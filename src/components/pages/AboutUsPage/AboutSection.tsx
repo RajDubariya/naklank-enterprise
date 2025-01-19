@@ -35,7 +35,7 @@ const AboutSection = ({ data }: { data: AboutSectionType }) => {
             className={`flex flex-col md:flex-row ${
               index % 2 === 0
                 ? "md:flex-row-reverse"
-                : "md:flex-row bg-gray-100 py-20"
+                : "md:flex-row bg-brand/10 py-20"
             } items-center p-4 md:px-12 gap-8`}
           >
             <motion.div

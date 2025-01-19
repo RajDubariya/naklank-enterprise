@@ -9,7 +9,7 @@ interface Props {
 
 const Footer = ({ footer }: Props) => {
   return (
-    <footer className="bg-black text-white p-6 md:p-12 md:pb-5 border-t border-gray-600">
+    <footer className="bg-brand text-white p-6 md:p-12 md:pb-5 border-t border-gray-600">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 md:gap-8 gap-5">
           {footer?.footerlinks?.map((section) => (
@@ -42,7 +42,7 @@ const Footer = ({ footer }: Props) => {
                   href={contact?.url}
                   key={index}
                   target="_blank"
-                  className="flex items-center hover:text-white transition-all duration-300 border border-gray-500 hover:border-gray-400 rounded-full p-1.5"
+                  className="flex items-center hover:text-white transition-all duration-300 border border-gray-400 hover:border-gray-300 rounded-full p-1.5"
                 >
                   <Image
                     src={urlFor(contact?.icon)}
@@ -95,7 +95,7 @@ const Footer = ({ footer }: Props) => {
           </div>
         </div>
 
-        <div className="border-t border-gray-700 mt-10 pt-6 text-center text-sm text-gray-400">
+        <div className="border-t border-gray-400 mt-10 pt-6 text-center text-sm text-gray-400">
           <p className="text-md font-sans text-gray-100 capitalize">
             designed and developed by
           </p>

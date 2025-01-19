@@ -10,7 +10,7 @@ const OurProductsSection = ({ data }: { data: SomeOurProductsSectionType }) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section className="w-full bg-gray-100 px-4 py-8 md:py-12">
+    <section className="w-full bg-brand/10 px-4 py-8 md:py-12">
       <div className="max-w-7xl mx-auto">
         <div className="mb-6 md:mb-8">
           <motion.h2
@@ -28,7 +28,7 @@ const OurProductsSection = ({ data }: { data: SomeOurProductsSectionType }) => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.1 }}
-              className="bg-black text-white py-2 px-4 md:py-3 md:px-6 uppercase"
+              className="bg-brand text-white py-2 px-4 md:py-3 md:px-6 uppercase"
             >
               {data?.cta?.label}
             </motion.button>

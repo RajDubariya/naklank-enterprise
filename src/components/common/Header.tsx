@@ -2,11 +2,11 @@
 
 import { urlFor } from "@/sanity/lib/image";
 import { HeaderType } from "@/types/common/Header";
+import { AnimatePresence, motion } from "framer-motion";
+import { Sling as Hamburger } from "hamburger-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Sling as Hamburger } from "hamburger-react";
-import { motion, AnimatePresence } from "framer-motion";
 
 interface Props {
   header: HeaderType;
@@ -45,16 +45,16 @@ const Header = (props: Props) => {
   };
 
   return (
-    <div className="w-full z-50 transition-colors duration-500 bg-black text-white">
-      <div className="flex items-center justify-between md:justify-normal gap-10 p-4">
-        <div className="flex items-center">
+    <div className="w-full z-50 transition-colors duration-500 bg-brand text-white">
+      <div className="flex items-center justify-between md:justify-normal gap-20 px-12">
+        <Link href={"/"} className="flex items-center">
           <Image
             src={urlFor(header?.logo?.image)}
             alt={header?.logo?.alt || "Logo"}
-            width={90}
-            height={90}
+            width={100}
+            height={100}
           />
-        </div>
+        </Link>
 
         <div className="md:hidden">
           <Hamburger toggled={isOpen} toggle={setIsOpen} color="#ffffff" />
@@ -70,7 +70,7 @@ const Header = (props: Props) => {
             >
               <Link
                 href={item?.link || "#"}
-                className="relative block cursor-pointer py-2"
+                className="relative block cursor-pointer py-2 uppercase"
               >
                 {item?.label}
               </Link>
@@ -91,7 +91,7 @@ const Header = (props: Props) => {
                             <Link
                               key={dropdownItem?._key || dropdownIndex}
                               href={dropdownItem?.link}
-                              className="block px-4 py-2 text-sm text-gray-800 hover:bg-black hover:text-white transition-all duration-300"
+                              className="block px-4 py-2 text-sm text-gray-800 hover:bg-brand hover:text-white transition-all duration-300"
                             >
                               {dropdownItem?.label}
                             </Link>

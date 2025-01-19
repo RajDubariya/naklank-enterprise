@@ -28,8 +28,8 @@ const ProductsTabs = ({ data }: { data: HomeProductsSection }) => {
       className={`px-4 md:px-6 py-2 text-sm md:text-base font-medium transition-colors uppercase
       ${
         activeTab === index
-          ? "text-black border-t-[3px] border-black"
-          : "text-gray-400 hover:text-gray-500"
+          ? "text-black border-t-[3px] border-brand"
+          : "text-gray-500 hover:text-gray-400"
       }`}
     >
       {tab?.tab_name}
@@ -84,7 +84,7 @@ const ProductsTabs = ({ data }: { data: HomeProductsSection }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.2 }}
-            className="text-white bg-black py-2 px-4 md:py-3 md:px-6 uppercase mt-4"
+            className="text-white bg-brand py-2 px-4 md:py-3 md:px-6 uppercase mt-4"
           >
             {tab?.content?.cta?.label}
           </motion.button>
@@ -94,7 +94,7 @@ const ProductsTabs = ({ data }: { data: HomeProductsSection }) => {
   );
 
   return (
-    <section className="w-full px-4 sm:px-6 py-12 md:py-16 bg-gray-100">
+    <section className="w-full px-4 sm:px-6 py-12 md:py-16 bg-brand/10">
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-start md:justify-center gap-4 md:gap-8 mb-6 md:mb-12 overflow-x-auto scrollbar-hide">
           {data?.tabs?.map((tab, index) => renderTabButton(tab, index))}

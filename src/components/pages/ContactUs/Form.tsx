@@ -61,10 +61,12 @@ export default function ContactForm() {
       variants={containerVariants}
     >
       <motion.h1
-        className="text-4xl text-center font-bold text-gray-800"
+        className="text-3xl md:text-5xl lg:text-5xl text-center font-bold text-gray-800"
         variants={itemVariants}
       >
-        Contact Us
+        <span className="inline-block pb-1 border-b-4 border-black">
+          Contact Us
+        </span>
       </motion.h1>
 
       <motion.div variants={itemVariants}>
@@ -81,7 +83,7 @@ export default function ContactForm() {
           placeholder="Enter Your Name"
           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
           required
-          className="w-full p-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-800"
+          className="w-full p-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-brand"
         />
       </motion.div>
 
@@ -99,7 +101,7 @@ export default function ContactForm() {
           placeholder="Enter Your Email"
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
           required
-          className="w-full p-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-800"
+          className="w-full p-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-brand"
         />
       </motion.div>
 
@@ -117,7 +119,7 @@ export default function ContactForm() {
           value={formData.phone}
           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
           required
-          className="w-full p-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-800"
+          className="w-full p-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-brand"
         />
       </motion.div>
 
@@ -135,7 +137,7 @@ export default function ContactForm() {
           onChange={(e) =>
             setFormData({ ...formData, message: e.target.value })
           }
-          className="w-full p-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-800"
+          className="w-full p-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-brand"
           rows={4}
         />
       </motion.div>
@@ -143,7 +145,7 @@ export default function ContactForm() {
       <motion.button
         type="submit"
         disabled={status === "loading"}
-        className="w-full py-3 bg-gray-800 text-white font-medium hover:bg-gray-900 transition disabled:opacity-40"
+        className="w-full py-3 bg-brand text-white font-medium hover:bg-brand/80 transition disabled:opacity-40"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{

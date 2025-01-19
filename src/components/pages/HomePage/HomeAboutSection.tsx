@@ -34,7 +34,7 @@ const HomeAboutSection = ({ data }: { data: HomeAboutSectionType }) => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.2 }}
-              className="bg-black text-white py-2 px-4 md:py-3 md:px-6 uppercase"
+              className="bg-brand text-white py-2 px-4 md:py-3 md:px-6 uppercase"
             >
               {data?.cta?.label}
             </motion.button>

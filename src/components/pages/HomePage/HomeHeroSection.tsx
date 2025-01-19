@@ -23,12 +23,7 @@ const HomeHeroSection = ({ data }: { data: HomeHeroSectionType }) => {
         {data?.images?.map((heroImage) => (
           <SwiperSlide key={heroImage?._key || Math.random()}>
             <div className="relative w-full h-full">
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 0.4 }}
-                transition={{ duration: 0.4 }}
-                className="absolute inset-0 bg-black pointer-events-none z-10"
-              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/30 to-transparent pointer-events-none z-10" />
               <Image
                 src={
                   heroImage?.image?.image
@@ -40,12 +35,12 @@ const HomeHeroSection = ({ data }: { data: HomeHeroSectionType }) => {
                 priority
                 className="object-cover"
               />
-              <div className="absolute top-[20%] md:top-[40%] left-2 md:left-8 text-white max-w-2xl z-20">
+              <div className="absolute bottom-[20%] left-2 md:left-[8rem] text-white z-20">
                 <motion.h1
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.2 }}
-                  className="text-5xl md:text-6xl mb-4 font-semibold capitalize drop-shadow-lg"
+                  className="text-3xl md:text-5xl mb-4 font-semibold uppercase drop-shadow-lg"
                 >
                   {heroImage?.title?.label}
                 </motion.h1>
