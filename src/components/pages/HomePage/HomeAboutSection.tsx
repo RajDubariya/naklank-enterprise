@@ -15,7 +15,7 @@ const HomeAboutSection = ({ data }: { data: HomeAboutSectionType }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
-            className="text-3xl md:text-5xl font-bold mb-4"
+            className="text-xl md:text-3xl font-bold mb-4"
           >
             {data?.title}
           </motion.h2>
@@ -24,7 +24,7 @@ const HomeAboutSection = ({ data }: { data: HomeAboutSectionType }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.1 }}
-            className="text-sm md:text-base lg:text-lg text-gray-600 mb-5"
+            className="text-base lg:text-lg text-gray-600 mb-5"
           >
             {data?.description}
           </motion.h3>
