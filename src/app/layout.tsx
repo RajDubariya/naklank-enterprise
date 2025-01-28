@@ -9,7 +9,7 @@ const myFont = localFont({
   display: "swap",
 });
 
-export const revalidate = 10;
+export const revalidate = 60;
 
 export default function RootLayout({
   children,
