@@ -1,47 +1,63 @@
+"use client";
 import { HomeAboutSection as HomeAboutSectionType } from "@/types/pages/HomePage";
 import Image from "next/image";
-
 import { urlFor } from "@/sanity/lib/image";
+import Link from "next/link";
+import { motion } from "framer-motion";
 
 const HomeAboutSection = ({ data }: { data: HomeAboutSectionType }) => {
   return (
-    <div className="relative w-full mx-auto p-2 md:p-4">
-      <div className="text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-brand-dark">
-          {data?.title}
-        </h2>
-        <p className="mt-2 text-gray-600 text-sm lg:w-1/2 mx-auto">
-          {data?.description}
-        </p>
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6 md:px-12">
-        {data?.business_details?.map((detail) => (
-          <div
-            key={detail?._key}
-            className="relative p-6 border rounded-lg hover:shadow-lg transition-shadow duration-300 overflow-hidden"
+    <section className="h-screen w-full flex items-center justify-center p-3 md:p-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 items-center justify-center gap-8">
+        <motion.div className="px-0 lg:pl-10">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+            className="text-xl md:text-3xl font-bold mb-4"
           >
-            <div className="w-16 h-16 mx-auto mb-4 relative">
-              <Image
-                src={urlFor(detail?.icon?.image)}
-                alt={detail?.point_title}
-                width={64}
-                height={64}
-                objectFit="contain"
-              />
-            </div>
-
-            <h3 className="text-xl font-semibold text-center text-brand-dark">
-              {detail?.point_title}
-            </h3>
-
-            <p className="mt-2 text-center text-gray-600">
-              {detail?.point_value}
-            </p>
-          </div>
-        ))}
+            {data?.title}
+          </motion.h2>
+          <motion.h3
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.1 }}
+            className="text-base lg:text-lg text-gray-600 mb-5"
+          >
+            {data?.description}
+          </motion.h3>
+          <Link href={data?.cta?.link}>
+            <motion.button
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.2 }}
+              className="bg-brand text-white py-2 px-4 md:py-3 md:px-6 uppercase"
+            >
+              {data?.cta?.label}
+            </motion.button>
+          </Link>
+        </motion.div>
+        <motion.div className="flex items-center justify-center">
+          <motion.div
+            initial={{ scale: 0.95, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <Image
+              src={urlFor(data?.image?.image)}
+              alt={data?.image?.alt || "Image"}
+              height={650}
+              width={800}
+              className="max-w-full h-auto"
+            />
+          </motion.div>
+        </motion.div>
       </div>
-    </div>
+    </section>
   );
 };
 

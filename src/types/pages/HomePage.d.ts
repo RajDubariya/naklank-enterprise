@@ -1,12 +1,15 @@
+import { PortableTextBlock } from "next-sanity";
 import { FooterType } from "../common/Footer";
 import { HeaderType } from "../common/Header";
 import { CustomImageType } from "./CustomImage";
-
+export type CTA = {
+  label: string;
+  link: string;
+};
 export type HomeSectionType =
   | HomeHeroSection
   | HomeAboutSection
-  | HomeProductsSection
-  | HomeHsnSection;
+  | HomeProductsSection;
 
 export type HomePageType = {
   _id: string;
@@ -25,45 +28,56 @@ export type HomeAboutSection = {
   _key: string;
   title: string;
   description: string;
-  business_details: BusinessDetails[];
+  image: CustomImageType;
+  cta: CTA;
 };
 export type HomeProductsSection = {
   _key: string;
   title: string;
-  description?: string;
-  cta: {
-    link: string;
-    label: string;
-  };
-  products: Product[];
-};
-export type HomeHsnSection = {
-  _key: string;
-  title: string;
-  description?: string;
-  hsn_details: { hsn_code: string; hsn_description: string }[];
+  tabs: ProductTab[];
 };
 
-export type Product = {
-  _key: string;
-  title: string;
+export type TabContent = {
+  heading: string;
   description: string;
-  slug: string;
   product_image: CustomImageType;
+  cta: CTA;
 };
 
-type BusinessDetails = {
+export type ProductTab = {
   _key: string;
-  point_title: string;
-  point_value: string;
-  icon: CustomImageType;
+  tab_name: string;
+  content: TabContent;
 };
 
 type HeroImage = {
   _key: string;
-  title: {
-    label: string;
-    link: string;
-  };
+  title: CTA;
+  description: string;
   image: CustomImageType;
+};
+
+export type OurProjectsSectionType = {
+  title: string;
+  description: string;
+  projects: Project[];
+};
+
+export type Project = {
+  _key: string;
+  link: CTA;
+  title: string;
+  image: CustomImageType;
+};
+export type SomeOurProductsSectionType = {
+  title: string;
+  cta: CTA;
+  products: OurProduct[];
+};
+export type OurProduct = {
+  _key: string;
+  link: CTA;
+  title: string;
+  firstimage: CustomImageType;
+  secondimage: CustomImageType;
 };

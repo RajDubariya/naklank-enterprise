@@ -19,9 +19,7 @@ const ProjectsSection = ({ data }: { data: ProjectsSectionType }) => {
           viewport={{ once: true }}
           className="text-3xl md:text-5xl lg:text-5xl font-bold text-center relative"
         >
-          <span className="inline-block pb-4 border-b-4 border-brand">
-            {title}
-          </span>
+          <span className="inline-block pb-4 border-b-4">{title}</span>
         </motion.h1>
 
         <motion.p

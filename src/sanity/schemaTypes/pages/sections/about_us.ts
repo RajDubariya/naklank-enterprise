@@ -12,12 +12,6 @@ export const AboutUsSection = defineType({
       description: "Section Title (Ex. About Us)",
     }),
     defineField({
-      name: "description",
-      title: "Description",
-      type: "text",
-      description: "Section Description",
-    }),
-    defineField({
       name: "items",
       title: "Items",
       type: "array",

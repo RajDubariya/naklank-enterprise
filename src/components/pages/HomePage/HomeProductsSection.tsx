@@ -1,66 +1,111 @@
-import { HomeProductsSection as HomeProductsSectionType } from "@/types/pages/HomePage";
-import Image from "next/image";
-import React from "react";
+"use client";
 import { urlFor } from "@/sanity/lib/image";
+import { HomeProductsSection, ProductTab } from "@/types/pages/HomePage";
+import Image from "next/image";
 import Link from "next/link";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
-const HomeProductsSection = ({ data }: { data: HomeProductsSectionType }) => {
-  return (
-    <section className="home-products-section">
-      <div className="text-center mt-3">
-        <h2 className="text-3xl md:text-4xl justify-between font-bold text-brand-dark">
-          {data?.title}
-        </h2>
-        {data?.description && (
-          <p className="text-gray-600 mb-8">{data?.description}</p>
+const ProductsTabs = ({ data }: { data: HomeProductsSection }) => {
+  const [activeTab, setActiveTab] = useState<number>(0);
+
+  if (!data?.tabs || data?.tabs?.length === 0) {
+    return null;
+  }
+
+  const handleTabChange = (index: number): void => {
+    setActiveTab(index);
+  };
+
+  const renderTabButton = (tab: ProductTab, index: number): JSX.Element => (
+    <motion.button
+      key={tab?._key || index}
+      onClick={() => handleTabChange(index)}
+      initial={{ opacity: 0, scale: 0.9 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4, delay: index * 0.1 }}
+      className={`px-4 md:px-6 py-2 text-sm md:text-base font-medium transition-colors uppercase
+      ${
+        activeTab === index
+          ? "text-black border-t-[3px] border-brand"
+          : "text-gray-500 hover:text-gray-400"
+      }`}
+    >
+      {tab?.tab_name}
+    </motion.button>
+  );
+
+  const renderTabContent = (tab: ProductTab): JSX.Element => (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.4 }}
+      className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 items-center"
+    >
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.4 }}
+        className="relative aspect-square"
+      >
+        {tab?.content?.product_image && (
+          <Image
+            src={urlFor(tab?.content?.product_image?.image)}
+            alt={tab?.content?.heading}
+            className="w-full h-full object-cover"
+            height={500}
+            width={500}
+          />
         )}
-      </div>
+      </motion.div>
 
-      <div className="products-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-2 md:p-12">
-        {data?.products?.map((product) => (
-          <div
-            key={product?._key}
-            className="product-card bg-white p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
-          >
-            <div className="image-wrapper relative w-full h-60 mb-4">
-              <Image
-                src={urlFor(product?.product_image?.image)}
-                alt={product?.product_image?.alt || product?.title}
-                layout="fill"
-                objectFit="cover"
-                className="rounded-lg"
-              />
-            </div>
-
-            <div className="product-info">
-              <h3 className="product-title text-lg font-semibold mb-2">
-                {product?.title}
-              </h3>
-              <p className="product-description text-sm text-gray-600 mb-2">
-                {product?.description}
-              </p>
-
-              <Link
-                href={product?.slug}
-                className="product-link bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-4 rounded block text-center transition duration-200"
-              >
-                View Details
-              </Link>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <div className="cta-section text-center capitalize">
-        <Link
-          href={data?.cta?.link}
-          className="cta-button inline-block bg-brand hover:bg-brand/80 text-white font-semibold py-3 px-6 rounded transition duration-200"
+      <div className="space-y-2 md:space-y-6">
+        <motion.h3
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="text-2xl md:text-5xl font-bold capitalize"
         >
-          {data?.cta.label}
+          {tab?.content?.heading}
+        </motion.h3>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.1 }}
+          className="text-gray-600 text-sm md:text-lg leading-relaxed"
+        >
+          {tab?.content?.description}
+        </motion.p>
+        <Link href={tab?.content?.cta?.link}>
+          <motion.button
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.2 }}
+            className="text-white bg-brand py-2 px-4 md:py-3 md:px-6 uppercase mt-4"
+          >
+            {tab?.content?.cta?.label}
+          </motion.button>
         </Link>
+      </div>
+    </motion.div>
+  );
+
+  return (
+    <section className="w-full px-4 sm:px-6 py-12 md:py-16 bg-brand/10">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex justify-start md:justify-center gap-4 md:gap-8 mb-6 md:mb-12 overflow-x-auto scrollbar-hide">
+          {data?.tabs?.map((tab, index) => renderTabButton(tab, index))}
+        </div>
+
+        <AnimatePresence mode="wait">
+          {data?.tabs?.[activeTab] && renderTabContent(data?.tabs?.[activeTab])}
+        </AnimatePresence>
       </div>
     </section>
   );
 };
 
-export default HomeProductsSection;
+export default ProductsTabs;

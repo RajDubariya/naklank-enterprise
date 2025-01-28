@@ -12,10 +12,10 @@ export const HomePage = defineType({
       title: "Main",
       default: true,
     },
-    // {
-    //   name: "seo",
-    //   title: "SEO",
-    // },
+    {
+      name: "seo",
+      title: "SEO",
+    },
   ],
   fields: [
     defineField({
@@ -23,22 +23,6 @@ export const HomePage = defineType({
       title: "Page Name",
       type: "string",
       description: "Only used for CMS.",
-      validation: (Rule) => Rule.required(),
-      group: "main",
-    }),
-    defineField({
-      name: "header",
-      title: "Header",
-      type: "reference",
-      to: [{ type: "header" }],
-      validation: (Rule) => Rule.required(),
-      group: "main",
-    }),
-    defineField({
-      name: "footer",
-      title: "Footer",
-      type: "reference",
-      to: [{ type: "footer" }],
       validation: (Rule) => Rule.required(),
       group: "main",
     }),
@@ -63,16 +47,17 @@ export const HomePage = defineType({
         { type: "hero_section" },
         { type: "home_about_section" },
         { type: "home_products_section" },
-        { type: "home_hsn_section" },
+        { type: "home_projects_section" },
+        { type: "our_products_section" },
       ],
       group: "main",
     }),
-    // defineField({
-    //   name: "seo",
-    //   title: "SEO",
-    //   group: "seo",
-    //   type: "seo",
-    // }),
+    defineField({
+      name: "seo",
+      title: "SEO",
+      group: "seo",
+      type: "seo",
+    }),
   ],
   preview: {
     select: {

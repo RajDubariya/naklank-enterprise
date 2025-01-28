@@ -21,6 +21,12 @@ export const HeroSection = defineType({
               description: "Title of the image.",
             }),
             defineField({
+              name: "description",
+              title: "Image Description",
+              type: "text",
+              description: "Description of the image.",
+            }),
+            defineField({
               name: "image",
               title: "Image",
               type: "custom_image",

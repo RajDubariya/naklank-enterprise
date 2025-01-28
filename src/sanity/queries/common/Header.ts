@@ -1,5 +1,6 @@
 import { defineQuery } from "next-sanity";
 import { LinkQuery } from "./Link";
+import { FooterQuery } from "./Footer";
 
 export const Header = `
     _id,
@@ -14,7 +15,14 @@ export const Header = `
     }
 `;
 
-export const HeaderQuery = defineQuery(`*[_type == "header"]{
+export const HeaderQuery = defineQuery(`*[_type == "header"][0]{
     ${Header}
   }
 `);
+
+export const CombinedQuery = defineQuery(`
+    {
+      "header":${HeaderQuery},
+      "footer": ${FooterQuery}
+    }
+  `);

@@ -1,7 +1,8 @@
 import HomeAboutSection from "@/components/pages/HomePage/HomeAboutSection";
 import HomeHeroSection from "@/components/pages/HomePage/HomeHeroSection";
-import HomeHsnSection from "@/components/pages/HomePage/HomeHsnSection";
 import HomeProductsSection from "@/components/pages/HomePage/HomeProductsSection";
+import HomeProjectsSection from "@/components/pages/HomePage/HomeProjectsSection";
+import OurProductsSection from "@/components/pages/HomePage/OurProductsSection";
 import { HomeSectionType } from "@/types/pages/HomePage";
 
 interface Props {
@@ -18,8 +19,11 @@ const HomePageView = (props: Props) => {
         return <HomeAboutSection data={section} />;
       case "home_products_section":
         return <HomeProductsSection data={section} />;
-      case "home_hsn_section":
-        return <HomeHsnSection data={section} />;
+      case "home_projects_section":
+        return <HomeProjectsSection data={section} />;
+      case "our_products_section":
+        return <OurProductsSection data={section} />;
+
       default:
         break;
     }
