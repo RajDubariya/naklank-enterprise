@@ -12,10 +12,9 @@ export const ProjectsSection = defineType({
       description: "Section Title (Ex. About Us)",
     }),
     defineField({
-      name: "description",
-      title: "Description",
-      type: "text",
-      description: "Section Description",
+      name: "bg_image",
+      title: "Background Image",
+      type: "custom_image",
     }),
     defineField({
       name: "items",

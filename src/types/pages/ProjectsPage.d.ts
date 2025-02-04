@@ -4,6 +4,7 @@ export type ProjectsSectionType = {
   title: string;
   description: string;
   items: ProjectItem[];
+  bg_image: CustomImageType;
 };
 
 export type ProjectItem = {

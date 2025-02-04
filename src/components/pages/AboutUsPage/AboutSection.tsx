@@ -7,19 +7,26 @@ import Image from "next/image";
 
 const AboutSection = ({ data }: { data: AboutSectionType }) => {
   return (
-    <section className="py-6 md:py-12">
+    <section>
       <div className="mb-14">
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
-          viewport={{ once: true }}
-          className="text-3xl md:text-5xl lg:text-5xl font-bold text-center relative"
-        >
-          <span className="inline-block pb-1 border-b-4 border-black">
-            {data?.title}
-          </span>
-        </motion.h1>
+        <div className="relative flex justify-center items-center h-[175px]">
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage: `url(${urlFor(data.bg_image?.image)})`,
+            }}
+          />
+          <div className="absolute inset-0 bg-black opacity-50" />
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            viewport={{ once: true }}
+            className="relative text-3xl md:text-5xl lg:text-5xl font-bold text-center z-10 text-white"
+          >
+            <span className="inline-block">{data?.title}</span>
+          </motion.h1>
+        </div>
       </div>
       <div className="space-y-20">
         {data?.items?.map((item: Item, index: number) => (

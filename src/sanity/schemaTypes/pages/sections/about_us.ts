@@ -12,6 +12,11 @@ export const AboutUsSection = defineType({
       description: "Section Title (Ex. About Us)",
     }),
     defineField({
+      name: "bg_image",
+      title: "Background Image",
+      type: "custom_image",
+    }),
+    defineField({
       name: "items",
       title: "Items",
       type: "array",
