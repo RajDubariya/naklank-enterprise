@@ -6,6 +6,7 @@ export type AboutSectionType = {
   title: string;
   description: string;
   items: Item[];
+  bg_image: CustomImageType;
 };
 export type Item = {
   _key: string;
