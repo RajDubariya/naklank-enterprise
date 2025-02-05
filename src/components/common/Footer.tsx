@@ -2,6 +2,7 @@ import { urlFor } from "@/sanity/lib/image";
 import { FooterType } from "@/types/common/Footer";
 import Image from "next/image";
 import Link from "next/link";
+import logo from "/public/logo.webp";
 
 interface Props {
   footer: FooterType;
@@ -95,10 +96,17 @@ const Footer = ({ footer }: Props) => {
           </div>
         </div>
 
-        <div className="border-t border-gray-400 mt-10 pt-6 text-center text-sm text-gray-400">
-          <p className="text-md font-sans text-gray-100 capitalize">
-            designed and developed by
+        <div className="border-t border-gray-400 mt-10 pt-6 text-center text-sm text-gray-400 flex items-center justify-center">
+          <p className="text-xs text-gray-100 capitalize">
+            Design & Developed By
           </p>
+          <Link
+            href="https://www.designsbeyondtime.com"
+            target="_blank"
+            className="pl-2"
+          >
+            <Image src={logo} alt="LOGO" width={110} height={110} />
+          </Link>
         </div>
       </div>
     </footer>
